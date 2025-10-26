@@ -15,6 +15,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
@@ -950,6 +954,56 @@
                 font-size: 3rem;
             }
         }
+
+        /* Botão Voltar ao Topo */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #FFA500;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .back-to-top i {
+            font-size: 1.5rem;
+            color: black;
+        }
+
+        /* Mobile - Botão Voltar ao Topo */
+        @media (max-width: 768px) {
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .back-to-top i {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1169,5 +1223,31 @@
             </div>
         </div>
     </section>
+
+    <!-- Botão Voltar ao Topo -->
+    <a href="#" class="back-to-top" id="backToTop" title="Voltar ao topo">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script>
+        // Mostrar/esconder botão quando rolar a página
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Prevenir comportamento padrão do link e rolar suavemente
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html> 
