@@ -282,30 +282,38 @@
         </div>
     </section>
 
+    <!-- Sexta Seção - Papo e Groove -->
+    <section class="podcast-section">
+        <div class="podcast-container">
+            <div class="podcast-image-wrapper">
+                <img src="images/sessao6-img1.jpg" alt="Junior Chauk no Papo e Groove">
+            </div>
+
+            <div class="podcast-info">
+                <h2 class="podcast-title">PAPO E GROOVE</h2>
+                <p class="podcast-subtitle">Episódio com Júnior Chauk</p>
+                <p class="podcast-description">
+                    No episódio de hoje do Papo e Groove, recebemos o talentoso Júnior Chauk, baixista renomado e grande nome da cena musical brasileira!
+                </p>
+                <p class="podcast-description">
+                    Falamos sobre sua trajetória, influências, experiências de palco e o papel do baixo na construção do groove. Uma conversa leve, inspiradora e cheia de conhecimento pra quem respira música!
+                </p>
+                
+                <div class="podcast-link">
+                    <a href="https://www.youtube.com/watch?v=vd_SEtdG_tg" target="_blank" rel="noopener noreferrer" class="podcast-button" aria-label="Assistir episódio Papo e Groove no YouTube">
+                        <i class="bi bi-play-circle"></i>
+                        Assistir Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Botão Voltar ao Topo -->
     <a href="#" class="back-to-top" id="backToTop" title="Voltar ao topo">
         <i class="bi bi-arrow-up"></i>
     </a>
 
-    <script>
-        // Mostrar/esconder botão quando rolar a página
-        window.addEventListener('scroll', function() {
-            const backToTop = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        // Prevenir comportamento padrão do link e rolar suavemente
-        document.getElementById('backToTop').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    <script src="scripts.js" defer></script>
 </body>
 </html> 
