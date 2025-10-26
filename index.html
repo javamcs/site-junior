@@ -53,6 +53,7 @@
             background-position: center;
             filter: blur(0.5px);
             z-index: 1;
+            /* Removed background-attachment: fixed for better performance */
         }
 
         .hero-overlay {
@@ -361,10 +362,21 @@
             flex-direction: column;
             justify-content: center;
             padding: 4rem 2rem;
+            background-color: #000;
+        }
+
+        .releases-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url('images/background-sessao-2.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            opacity: 0.3;
+            z-index: 0;
         }
 
         .releases-overlay {
@@ -575,10 +587,21 @@
             flex-direction: column;
             justify-content: center;
             padding: 4rem 2rem;
+            background-color: #000;
+        }
+
+        .works-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url('images/background-sessao-3.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            opacity: 0.3;
+            z-index: 0;
         }
 
         .works-overlay {
@@ -740,10 +763,21 @@
             flex-direction: column;
             justify-content: center;
             padding: 4rem 2rem;
-            background-image: url('images/background-sessao-4.png');
+            background-color: #000;
+        }
+
+        .audio-visual-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/background-sessao-4.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            opacity: 0.3;
+            z-index: 0;
         }
 
         .audio-visual-overlay {
@@ -1074,7 +1108,7 @@
                 <div class="video-item">
                     <a href="https://www.youtube.com/watch?v=WzUvgCiuUg4" target="_blank" rel="noopener noreferrer">
                         <div class="video-wrapper">
-                            <img src="images/sessao-4-img1.png" alt="Gilberto França - Você e Eu DVD Verso Reverso">
+                            <img src="images/sessao-4-img1.jpg" alt="Gilberto França - Você e Eu DVD Verso Reverso">
                             <div class="play-overlay"></div>
                         </div>
                     </a>
