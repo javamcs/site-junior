@@ -47,6 +47,118 @@
     box-sizing: border-box;
 }
 
+/* ============================================
+   BANNER TOPO - NOVO PODCAST
+   ============================================ */
+.top-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #FF8C00 100%);
+    color: var(--color-bg-dark);
+    padding: var(--spacing-xs) var(--spacing-lg);
+    text-align: center;
+    z-index: 9999;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    transition: transform var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+}
+
+.top-banner.hidden {
+    transform: translateY(-100%);
+}
+
+.top-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    max-width: 1400px;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity var(--transition-normal);
+}
+
+.top-banner-content:hover {
+    opacity: 0.8;
+}
+
+.top-banner-badge {
+    background: var(--color-bg-dark);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.top-banner-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.03rem;
+}
+
+.top-banner i {
+    font-size: 1.2rem;
+    transition: transform var(--transition-normal);
+}
+
+.top-banner-content:hover i {
+    transform: translateX(5px);
+}
+
+.top-banner-close {
+    background: transparent;
+    border: none;
+    color: var(--color-bg-dark);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.top-banner-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+/* Mobile - Banner */
+@media (max-width: 768px) {
+    .top-banner {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .top-banner-content {
+        gap: 0.5rem;
+    }
+
+    .top-banner-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .top-banner-text {
+        font-size: 0.85rem;
+    }
+
+    .top-banner i {
+        display: none;
+    }
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -81,6 +193,13 @@ a {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 50px;
+    }
 }
 
 .hero-background {

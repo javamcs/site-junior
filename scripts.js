@@ -44,11 +44,34 @@
     }
 
     /**
+     * Inicializa o banner do topo com botão de fechar
+     */
+    function initTopBanner() {
+        const topBanner = document.getElementById('topBanner');
+        const closeButton = document.getElementById('closeBanner');
+        
+        if (!topBanner || !closeButton) return;
+
+        closeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            topBanner.classList.add('hidden');
+            
+            // Remove o padding do hero section quando o banner é fechado
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.style.paddingTop = '0';
+            }
+        });
+    }
+
+    /**
      * Inicialização quando o DOM estiver pronto
      */
     function init() {
         initBackToTop();
         initLazyLoading();
+        initTopBanner();
     }
 
     // Aguarda o carregamento do DOM
