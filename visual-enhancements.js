@@ -7,13 +7,24 @@
     'use strict';
 
     // ============================================
-    // 1. SCROLL REVEAL - Revela elementos ao rolar
+    // 1. SCROLL REVEAL - Revela elementos ao rolar (melhorado)
     // ============================================
     function initScrollReveal() {
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.01, // Detecta mais cedo
+            rootMargin: '100px 0px -50px 0px' // Inicia a animação antes do elemento aparecer
         };
+
+        // Função para verificar se elemento está na viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
 
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
@@ -30,10 +41,18 @@
         // Elementos para revelar
         const revealElements = document.querySelectorAll('.podcast-section, .contact-section, .works-grid .work-card, .video-item');
         revealElements.forEach(function(el) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+            // Se o elemento já está visível no carregamento, mostra imediatamente
+            if (isInViewport(el) || el.getBoundingClientRect().top < window.innerHeight) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+                el.classList.add('revealed');
+            } else {
+                // Apenas esconde elementos que não estão na viewport inicial
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+                observer.observe(el);
+            }
         });
     }
 
@@ -307,7 +326,7 @@
     // INICIALIZAÇÃO
     // ============================================
     function init() {
-        initScrollReveal();
+        // initScrollReveal(); // Desabilitado - estava causando tela vazia
         initSmoothSnap(); // Agora apenas melhora o smooth scroll, sem snap
         initEnhancedHovers();
         initScrollProgress();
