@@ -1,13 +1,24 @@
 /**
  * Visual Enhancements Script
- * Melhora a experiência visual do site com animações e efeitos
+ * 
+ * MELHORA A EXPERIÊNCIA VISUAL COM:
+ * - Scroll progress bar (barra de progresso no topo)
+ * - Scroll suave aprimorado
+ * - Efeitos hover em cards
+ * - Partículas de fundo (opcional)
+ * - Preloader (opcional)
+ * 
+ * IMPORTANTE: Funções desabilitadas (initScrollReveal, initParallax, initCustomCursor)
+ * estão comentadas mas mantidas para referência futura.
  */
 
 (function() {
     'use strict';
 
     // ============================================
-    // 1. SCROLL REVEAL - Revela elementos ao rolar (melhorado)
+    // 1. SCROLL REVEAL - Revela elementos ao rolar
+    // NOTA: Desabilitado na inicialização (linha 359) - estava causando tela vazia
+    // Para reativar: descomente initScrollReveal() na função init()
     // ============================================
     function initScrollReveal() {
         const observerOptions = {
@@ -191,7 +202,9 @@
     }
 
     // ============================================
-    // 6. CURSOR CUSTOMIZADO (opcional)
+    // 6. CURSOR CUSTOMIZADO
+    // NOTA: Desabilitado na inicialização (linha 370)
+    // Para reativar: descomente initCustomCursor() na função init()
     // ============================================
     function initCustomCursor() {
         // Aplica apenas se não for mobile
@@ -254,7 +267,9 @@
     }
 
     // ============================================
-    // 7. PARALLAX EFX SUAVE (otimizado)
+    // 7. PARALLAX EFX SUAVE
+    // NOTA: Desabilitado na inicialização (linha 371) - estava causando delay nas imagens
+    // Para reativar: descomente initParallax() na função init()
     // ============================================
     function initParallax() {
         const parallaxElements = document.querySelectorAll('.hero-background');

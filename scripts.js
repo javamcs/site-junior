@@ -1,6 +1,14 @@
 /**
- * Site Junior Chauk - Scripts
- * Gerenciamento de interatividade do site
+ * Site Junior Chauk - Scripts Principais
+ * 
+ * GERENCIA:
+ * - Botão voltar ao topo
+ * - Lazy loading de imagens
+ * - Scroll suave
+ * - Banner do topo (se houver)
+ * 
+ * IMPORTANTE: Não altere os seletores CSS (#backToTop, .hero-section, etc)
+ * sem atualizar o HTML correspondente.
  */
 
 (function() {
@@ -8,6 +16,7 @@
 
     /**
      * Inicializa o botão "Voltar ao Topo"
+     * Seletor: #backToTop
      */
     function initBackToTop() {
         const backToTopButton = document.getElementById('backToTop');
@@ -34,8 +43,9 @@
     }
 
     /**
-     * Adiciona loading="lazy" a imagens para melhor performance
-     * Exceto imagens da primeira seção que devem carregar imediatamente
+     * Configura lazy loading para melhor performance
+     * - Imagens da .hero-section: loading="eager" (carregam imediatamente)
+     * - Demais imagens: loading="lazy" (carregam sob demanda)
      */
     function initLazyLoading() {
         const images = document.querySelectorAll('img');
@@ -51,7 +61,8 @@
     }
 
     /**
-     * Melhora a fluidez do scroll
+     * Remove scroll-snap e habilita scroll suave
+     * Melhora a experiência de navegação
      */
     function initSmoothScroll() {
         // Remove qualquer comportamento de scroll-snap que possa causar movimento em blocos
@@ -67,7 +78,9 @@
     }
 
     /**
-     * Inicializa o banner do topo com botão de fechar
+     * Inicializa o banner do topo (se existir)
+     * Seletores: #topBanner, #closeBanner
+     * Nota: Esta funcionalidade só funciona se o HTML tiver esses IDs
      */
     function initTopBanner() {
         const topBanner = document.getElementById('topBanner');

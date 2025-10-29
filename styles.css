@@ -47,8 +47,52 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+    scroll-snap-type: none; /* Remove scroll-snap para fluidez */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Melhora a fluidez do scroll */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove qualquer snap que possa estar causando comportamento em blocos */
+section {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    scroll-margin-top: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-white);
+    scroll-behavior: smooth;
+    scroll-snap-type: none; /* Garante que body também não tem snap */
+    overscroll-behavior-y: smooth;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-normal);
+}
+
 /* ============================================
    BANNER TOPO - NOVO PODCAST
+   Classes: .top-banner, .top-banner-content, .top-banner-badge, .top-banner-text
    ============================================ */
 .top-banner {
     position: fixed;
@@ -159,51 +203,10 @@
     }
 }
 
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 0;
-    scroll-snap-type: none; /* Remove scroll-snap para fluidez */
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Melhora a fluidez do scroll */
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Remove qualquer snap que possa estar causando comportamento em blocos */
-section {
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
-    scroll-margin-top: 0;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    background-color: var(--color-bg-dark);
-    color: var(--color-text-white);
-    scroll-behavior: smooth;
-    scroll-snap-type: none; /* Garante que body também não tem snap */
-    overscroll-behavior-y: smooth;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: var(--transition-normal);
-}
-
 /* ============================================
    SEÇÃO 1 - HERO
+   Classes principais: .hero-section, .hero-background, .hero-overlay, .hero-content
+   Classes filhas: .hero-left, .hero-right, .hero-name, .hero-description
    ============================================ */
 .hero-section {
     position: relative;
@@ -330,6 +333,12 @@ a {
     color: #FFD700;
 }
 
+/* ============================================
+   COMPONENTE: ÍCONES DE PLATAFORMA MUSICAL
+   Usado na Seção Hero
+   Classes: .music-platforms, .platform-icon
+   Modificadores: .spotify, .apple, .deezer
+   ============================================ */
 .music-platforms {
     display: flex;
     gap: 1.5rem;
@@ -677,7 +686,11 @@ a {
     }
 }
 
-/* Seção 2 - Lançamentos */
+/* ============================================
+   SEÇÃO 2 - LANÇAMENTOS
+   Classes principais: .releases-section, .releases-container, .video-grid
+   Classes filhas: .video-item, .video-wrapper, .video-info, .video-title
+   ============================================ */
 .releases-section {
     position: relative;
     min-height: 100vh;
@@ -723,6 +736,11 @@ a {
     width: 100%;
 }
 
+/* ============================================
+   COMPONENTE REUTILIZÁVEL: SECTION TITLE
+   Usado em todas as seções (exceto Hero e Contato)
+   Classes: .section-title, .section-icon, .section-title-text
+   ============================================ */
 .section-title {
     display: flex;
     align-items: center;
@@ -742,6 +760,11 @@ a {
     letter-spacing: 0.1rem;
 }
 
+/* ============================================
+   COMPONENTE REUTILIZÁVEL: VIDEO GRID
+   Usado nas seções: Lançamentos (Seção 2) e Audiovisual (Seção 4)
+   Classes: .video-grid, .video-item, .video-wrapper, .play-overlay
+   ============================================ */
 .video-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -905,7 +928,11 @@ a {
     }
 }
 
-/* Seção 3 - Meus Trabalhos */
+/* ============================================
+   SEÇÃO 3 - MEUS TRABALHOS
+   Classes principais: .works-section, .works-container, .works-grid
+   Classes filhas: .work-card, .work-icon, .work-title, .work-description
+   ============================================ */
 .works-section {
     position: relative;
     min-height: 100vh;
@@ -1098,7 +1125,11 @@ a {
     }
 }
 
-/* Seção 4 - Produções em Audiovisual */
+/* ============================================
+   SEÇÃO 4 - PRODUÇÕES EM AUDIOVISUAL
+   Classes principais: .audio-visual-section, .audio-visual-container
+   Reutiliza estilos do .video-grid (Seção 2)
+   ============================================ */
 .audio-visual-section {
     position: relative;
     min-height: 100vh;
@@ -1151,7 +1182,11 @@ a {
     }
 }
 
-/* Seção 5 - Contato */
+/* ============================================
+   SEÇÃO 5 - CONTATO
+   Classes principais: .contact-section, .contact-container
+   Classes filhas: .contact-image-wrapper, .contact-info, .contact-name, .contact-item
+   ============================================ */
 .contact-section {
     position: relative;
     min-height: 100vh;
@@ -1299,7 +1334,10 @@ a {
     }
 }
 
-/* Botão Voltar ao Topo */
+/* ============================================
+   BOTÃO VOLTAR AO TOPO
+   Classe: .back-to-top | ID: #backToTop
+   ============================================ */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -1351,6 +1389,9 @@ a {
 
 /* ============================================
    SEÇÃO 6 - PODCAST (PAPO E GROOVE)
+   Classes principais: .podcast-section, .podcast-container
+   Classes filhas: .podcast-info, .podcast-title, .podcast-button, .podcast-image-wrapper
+   ID: #podcast (para scroll anchor)
    ============================================ */
 .podcast-section {
     position: relative;
