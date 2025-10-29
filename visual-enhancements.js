@@ -254,17 +254,39 @@
     }
 
     // ============================================
-    // 7. PARALLAX EFX SUAVE
+    // 7. PARALLAX EFX SUAVE (otimizado)
     // ============================================
     function initParallax() {
         const parallaxElements = document.querySelectorAll('.hero-background');
         
-        window.addEventListener('scroll', function() {
+        // Otimizações de renderização
+        parallaxElements.forEach(function(el) {
+            el.style.willChange = 'transform';
+            el.style.backfaceVisibility = 'hidden';
+            el.style.transform = 'translateZ(0)'; // Força aceleração por hardware
+        });
+        
+        let ticking = false;
+        
+        function updateParallax() {
             const scrolled = window.pageYOffset;
             parallaxElements.forEach(function(el) {
-                const speed = 0.5;
-                el.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
+                const rect = el.parentElement.getBoundingClientRect();
+                // Só aplica parallax se o elemento estiver visível
+                if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+                    const speed = 0.3; // Reduzido para menos movimento
+                    const yPos = -(scrolled * speed);
+                    el.style.transform = `translate3d(0, ${yPos}px, 0) translateZ(0)`;
+                }
             });
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
         }, { passive: true });
     }
 
@@ -338,7 +360,7 @@
         // Apenas desktop
         if (window.innerWidth > 768) {
             // initCustomCursor(); // Desabilitado - cursor acompanhando mouse
-            initParallax();
+            // initParallax(); // Desabilitado - estava causando delay nas imagens de fundo
         }
     }
 
