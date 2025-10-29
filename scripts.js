@@ -44,6 +44,22 @@
     }
 
     /**
+     * Melhora a fluidez do scroll
+     */
+    function initSmoothScroll() {
+        // Remove qualquer comportamento de scroll-snap que possa causar movimento em blocos
+        const html = document.documentElement;
+        html.style.scrollSnapType = 'none';
+        html.style.scrollBehavior = 'smooth';
+        
+        // Garante que as seções não tenham scroll-snap
+        const sections = document.querySelectorAll('section');
+        sections.forEach(function(section) {
+            section.style.scrollSnapAlign = 'none';
+        });
+    }
+
+    /**
      * Inicializa o banner do topo com botão de fechar
      */
     function initTopBanner() {
@@ -72,6 +88,7 @@
         initBackToTop();
         initLazyLoading();
         initTopBanner();
+        initSmoothScroll();
     }
 
     // Aguarda o carregamento do DOM

@@ -109,18 +109,22 @@
     }
 
     // ============================================
-    // 4. SMOOTH SCROLL SNAP
+    // 4. SMOOTH SCROLL ENHANCEMENT
     // ============================================
     function initSmoothSnap() {
-        // Adiciona scroll-snap ao CSS
+        // Adiciona animações CSS para scroll fluido
         const style = document.createElement('style');
         style.textContent = `
             html {
-                scroll-snap-type: y proximity;
+                scroll-behavior: smooth;
             }
             
-            section {
-                scroll-snap-align: start;
+            body {
+                scroll-behavior: smooth;
+            }
+            
+            * {
+                scroll-behavior: inherit;
             }
             
             .revealed {
@@ -136,8 +140,16 @@
                     transform: translateY(-10vh) translateX(20px);
                 }
             }
+            
+            /* Suaviza transições entre seções */
+            section {
+                scroll-margin-top: 0;
+            }
         `;
         document.head.appendChild(style);
+        
+        // Melhora o scroll suave programaticamente
+        document.documentElement.style.scrollBehavior = 'smooth';
     }
 
     // ============================================
@@ -296,7 +308,7 @@
     // ============================================
     function init() {
         initScrollReveal();
-        initSmoothSnap();
+        initSmoothSnap(); // Agora apenas melhora o smooth scroll, sem snap
         initEnhancedHovers();
         initScrollProgress();
         

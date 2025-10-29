@@ -161,6 +161,22 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 0;
+    scroll-snap-type: none; /* Remove scroll-snap para fluidez */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Melhora a fluidez do scroll */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove qualquer snap que possa estar causando comportamento em blocos */
+section {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    scroll-margin-top: 0;
 }
 
 body {
@@ -169,6 +185,9 @@ body {
     -webkit-font-smoothing: antialiased;
     background-color: var(--color-bg-dark);
     color: var(--color-text-white);
+    scroll-behavior: smooth;
+    scroll-snap-type: none; /* Garante que body também não tem snap */
+    overscroll-behavior-y: smooth;
 }
 
 img {
