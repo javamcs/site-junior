@@ -306,7 +306,7 @@
         
         // Apenas desktop
         if (window.innerWidth > 768) {
-            initCustomCursor();
+            // initCustomCursor(); // Desabilitado - cursor acompanhando mouse
             initParallax();
         }
     }
