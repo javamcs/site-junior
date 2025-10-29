@@ -328,40 +328,194 @@ a {
 
 .music-platforms {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
     flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+}
+
+/* Linha conectando os ícones (opcional - visual criativo) */
+.music-platforms::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(29, 185, 84, 0.5) 0%,
+        rgba(255, 215, 0, 0.5) 33%,
+        rgba(250, 45, 72, 0.5) 50%,
+        rgba(255, 0, 98, 0.5) 67%,
+        rgba(29, 185, 84, 0.5) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 2px;
+}
+
+.music-platforms:hover::before {
+    opacity: 0.6;
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(1.05); }
 }
 
 .platform-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0; /* Inicia invisível para animação */
+}
+
+/* Efeito de brilho no hover */
+.platform-icon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    transform: rotate(45deg);
+}
+
+.platform-icon:hover::before {
+    opacity: 1;
+    animation: shine 0.6s ease;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Efeito de pulso musical */
+.platform-icon::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 24px;
+    padding: 4px;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .platform-icon:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px) scale(1.08);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.platform-icon:hover::after {
+    opacity: 1;
+    animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.3;
+    }
 }
 
 .platform-icon i,
 .platform-icon img {
-    font-size: 1.5rem;
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
     color: white;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
 }
 
-.spotify { background: #1DB954; }
-.apple { background: #FA2D48; }
-.deezer { background: #FF0062; }
+.platform-icon:hover i,
+.platform-icon:hover img {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* Gradientes animados para cada plataforma */
+.spotify { 
+    background: linear-gradient(135deg, #1DB954 0%, #1ed760 100%);
+    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.4), 
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.spotify:hover {
+    box-shadow: 0 16px 40px rgba(29, 185, 84, 0.6),
+                0 8px 16px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.apple { 
+    background: linear-gradient(135deg, #FA2D48 0%, #FF6B7D 100%);
+    box-shadow: 0 8px 24px rgba(250, 45, 72, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.apple:hover {
+    box-shadow: 0 16px 40px rgba(250, 45, 72, 0.6),
+                0 8px 16px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.deezer { 
+    background: linear-gradient(135deg, #FF0062 0%, #FF4B8B 100%);
+    box-shadow: 0 8px 24px rgba(255, 0, 98, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.deezer:hover {
+    box-shadow: 0 16px 40px rgba(255, 0, 98, 0.6),
+                0 8px 16px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Animação de entrada para os ícones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.platform-icon:nth-child(1) { animation-delay: 0.1s; }
+.platform-icon:nth-child(2) { animation-delay: 0.2s; }
+.platform-icon:nth-child(3) { animation-delay: 0.3s; }
 
 .album-cover-container {
     display: flex;
@@ -501,19 +655,20 @@ a {
 
     .music-platforms {
         justify-content: center;
-        gap: 1.5rem;
+        gap: 1.2rem;
     }
 
     .platform-icon {
-        width: 45px;
-        height: 45px;
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
     }
 
     .platform-icon i,
     .platform-icon img {
-        font-size: 1.2rem;
-        width: 20px;
-        height: 20px;
+        font-size: 1.5rem;
+        width: 28px;
+        height: 28px;
     }
 
     .album-cover-container {
