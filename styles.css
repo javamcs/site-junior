@@ -383,8 +383,8 @@ a {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
-    animation: fadeInUp 0.6s ease forwards;
-    opacity: 0; /* Inicia invisível para animação */
+    /* Animação removida para carregamento instantâneo */
+    opacity: 1; /* Visível imediatamente */
 }
 
 /* Efeito de brilho no hover */
@@ -505,21 +505,7 @@ a {
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Animação de entrada para os ícones */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.platform-icon:nth-child(1) { animation-delay: 0.1s; }
-.platform-icon:nth-child(2) { animation-delay: 0.2s; }
-.platform-icon:nth-child(3) { animation-delay: 0.3s; }
+/* Animação de entrada removida para evitar delays */
 
 .album-cover-container {
     display: flex;

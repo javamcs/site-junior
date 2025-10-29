@@ -294,6 +294,11 @@
     // 8. PRELOADER (Loading Screen)
     // ============================================
     function initPreloader() {
+        // Se a página já foi visitada nesta sessão, pula o preloader
+        if (sessionStorage.getItem('pageLoaded')) {
+            return; // Não mostra preloader se já foi visitado
+        }
+
         const preloader = document.createElement('div');
         preloader.id = 'preloader';
         preloader.innerHTML = `
@@ -308,7 +313,7 @@
                 align-items: center;
                 justify-content: center;
                 z-index: 99999;
-                transition: opacity 0.5s ease;
+                transition: opacity 0.3s ease;
             ">
                 <div style="
                     color: var(--color-primary);
@@ -333,14 +338,17 @@
         `;
         document.head.appendChild(style);
 
-        // Remove após carregar
+        // Marca como visitado
+        sessionStorage.setItem('pageLoaded', 'true');
+
+        // Remove após carregar - muito mais rápido
         window.addEventListener('load', function() {
             setTimeout(function() {
                 preloader.style.opacity = '0';
                 setTimeout(function() {
                     preloader.remove();
-                }, 500);
-            }, 800);
+                }, 200);
+            }, 200); // Reduzido para 200ms
         });
     }
 

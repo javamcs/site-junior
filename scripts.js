@@ -35,11 +35,18 @@
 
     /**
      * Adiciona loading="lazy" a imagens para melhor performance
+     * Exceto imagens da primeira seção que devem carregar imediatamente
      */
     function initLazyLoading() {
         const images = document.querySelectorAll('img');
         images.forEach(function(img) {
-            img.loading = 'lazy';
+            // Imagens da hero section carregam imediatamente (sem lazy)
+            const isHeroImage = img.closest('.hero-section') !== null;
+            if (!isHeroImage) {
+                img.loading = 'lazy';
+            } else {
+                img.loading = 'eager'; // Carrega imediatamente
+            }
         });
     }
 
